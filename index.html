@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Convite Yasmin 4 Anos - Cruzeiro</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&display=swap');
+        
+        body { 
+            font-family: 'Oswald', sans-serif; 
+            background-color: #003399;
+            background-image: url('https://www.transparenttextures.com/patterns/p6.png');
+            color: white; 
+            overflow-x: hidden; 
+        }
+        
+        /* Envelope Animado */
+        .envelope-wrapper { position: relative; width: 280px; height: 180px; background-color: #0044cc; border-radius: 0 0 10px 10px; box-shadow: 0 20px 40px rgba(0,0,0,0.5); }
+        .envelope-flap { position: absolute; top: 0; left: 0; border-left: 140px solid transparent; border-right: 140px solid transparent; border-top: 100px solid #0055ff; transform-origin: top; transition: transform 0.8s ease; z-index: 3; }
+        .envelope-wrapper.open .envelope-flap { transform: rotateX(180deg); }
+        .letter { position: absolute; bottom: 10px; left: 10%; width: 80%; height: 80%; background: white; transition: transform 1s ease; z-index: 2; }
+        .envelope-wrapper.open .letter { transform: translateY(-120px); }
+
+        .hidden { display: none; }
+        .fade-in { animation: fadeIn 1.2s forwards; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+        .pulse { animation: pulse 2s infinite; }
+        @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+
+        .grass-border {
+            background: #2d5a27;
+            background-image: url('https://www.transparenttextures.com/patterns/dark-matter.png');
+            height: 12px; width: 100%; border-radius: 20px 20px 0 0;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-center p-4">
+
+    <div id="screen-1" class="text-center space-y-8 fade-in">
+        <img src="https://logodetimes.com/times/cruzeiro/logo-cruzeiro-256.png" class="w-28 mx-auto pulse" alt="Cruzeiro">
+        <div class="space-y-2">
+            <h2 class="text-3xl font-bold uppercase tracking-tighter italic">Yasmin 4 Anos</h2>
+            <p class="text-blue-100 text-sm">Escute o hino para entrar no clima!</p>
+        </div>
+        <div class="flex flex-col space-y-4 w-64 mx-auto">
+            <button onclick="iniciarExperiencia(true)" class="bg-yellow-400 text-blue-900 px-6 py-4 rounded-full font-bold shadow-xl hover:bg-yellow-300 transition flex items-center justify-center gap-2 uppercase tracking-wider">
+                <span>🔊</span> Abrir com Hino
+            </button>
+            <button onclick="iniciarExperiencia(false)" class="bg-white/10 text-white border border-white/20 px-6 py-3 rounded-full font-bold hover:bg-white/20 transition uppercase tracking-wider">
+                🔇 Abrir em Silêncio
+            </button>
+        </div>
+    </div>
+
+    <div id="screen-2" class="hidden">
+        <div id="envelope" class="envelope-wrapper">
+            <div class="envelope-flap"></div>
+            <div class="letter flex items-center justify-center">
+                <img src="https://logodetimes.com/times/cruzeiro/logo-cruzeiro-256.png" class="w-12 opacity-20">
+            </div>
+        </div>
+    </div>
+
+    <div id="screen-3" class="hidden text-center max-w-xs space-y-4 fade-in">
+        <p class="text-2xl italic font-light italic">"Uma noite especial está chegando cheia de luz, emoção e muita paixão azul..."</p>
+        <div class="flex justify-center text-yellow-400 text-xl">★ ★ ★ ★ ★</div>
+    </div>
+
+    <div id="screen-4" class="hidden text-center max-w-xs space-y-4 fade-in">
+        <p class="text-4xl font-bold uppercase tracking-tighter text-yellow-400 italic leading-none">As arquibancadas estão prontas!</p>
+        <p class="text-xl italic">A torcida vibra, e um grande jogo vai começar...</p>
+    </div>
+
+    <div id="screen-5" class="hidden w-full max-w-md text-center space-y-6 fade-in pb-10">
+        <div class="relative inline-block">
+            <div class="absolute -inset-1 bg-yellow-400 rounded-full blur opacity-50"></div>
+            <img src="foto-com-mascotes.jpeg" class="relative w-52 h-52 rounded-full border-4 border-white object-cover mx-auto shadow-2xl" alt="Yasmin">
+        </div>
+
+        <div class="space-y-1">
+            <h1 class="text-6xl font-black uppercase italic tracking-tighter leading-none">Yasmin</h1>
+            <h2 class="text-4xl font-bold text-yellow-400">4 ANOS</h2>
+        </div>
+        
+        <p class="text-lg bg-white text-blue-900 font-bold py-2 px-6 inline-block rounded-lg shadow-lg transform -rotate-2">
+            NOSSA CAPITÃ TE CONVOCA! ⚽
+        </p>
+
+        <div class="mx-4 shadow-2xl rounded-3xl overflow-hidden">
+            <div class="grass-border"></div>
+            <div class="bg-white text-blue-900 p-6 space-y-6 relative overflow-hidden">
+                <img src="https://logodetimes.com/times/cruzeiro/logo-cruzeiro-256.png" class="absolute -right-10 -bottom-10 w-32 opacity-10 rotate-12">
+                
+                <div class="grid grid-cols-2 divide-x-2 divide-blue-100">
+                    <div>
+                        <p class="text-[10px] uppercase font-bold text-blue-400 leading-none">Data do Jogo</p>
+                        <p class="font-black text-xl italic text-blue-900">07/03/2026</p>
+                    </div>
+                    <div>
+                        <p class="text-[10px] uppercase font-bold text-blue-400 leading-none">Abertura Portões</p>
+                        <p class="font-black text-xl italic text-blue-900">17:30h</p>
+                    </div>
+                </div>
+
+                <div class="border-t border-blue-50 pt-4 text-center">
+                    <p class="text-[10px] uppercase font-bold text-blue-400 mb-1">📍 Localização do Estádio</p>
+                    <p class="font-bold text-sm leading-tight text-blue-900">
+                        Salão de Festas<br>
+                        Rua B, 3 - Chacaras Reunidas Santa Terezinha<br>
+                        Contagem - MG
+                    </p>
+                </div>
+
+                <div class="flex flex-col space-y-3">
+                    <a href="https://forms.gle/8x36aX7Y3KofrMou6" target="_blank" class="bg-blue-600 text-white py-4 rounded-xl font-bold uppercase tracking-widest shadow-lg hover:bg-blue-700 transition active:scale-95">✓ Confirmar Escalação</a>
+                    <a href="https://maps.google.com/?q=Rua+B+3+Chacaras+Reunidas+Santa+Terezinha+Contagem" target="_blank" class="bg-gray-100 text-blue-800 py-3 rounded-xl font-bold uppercase text-[10px] shadow hover:bg-gray-200 transition">Abrir no Google Maps</a>
+                </div>
+            </div>
+        </div>
+
+        <button onclick="toggleAudio()" class="text-[10px] uppercase tracking-widest opacity-60 border border-white/30 px-3 py-1 rounded-full bg-blue-900/40 backdrop-blur-sm">
+            🔊 Pausar/Tocar Hino
+        </button>
+    </div>
+
+    <button id="btn-pular" onclick="pularTudo()" class="hidden fixed bottom-6 opacity-90 hover:opacity-100 text-[15px] uppercase tracking-[0.2em] transition-all duration-300">
+        Pular Intro ⏩
+    </button>
+
+    <audio id="hino" loop src="/Hino do Cruzeiro (Oficial) - Orquestra e Coro Cid (youtube).mp3"></audio>
+
+    <script>
+        const hino = document.getElementById('hino');
+        let timers = [];
+
+        function toggleAudio() {
+            if (hino.paused) { hino.play(); } else { hino.pause(); }
+        }
+
+        function lancarConfetes() {
+            const count = 200;
+            const defaults = { origin: { y: 0.7 } };
+
+            function fire(particleRatio, opts) {
+                confetti({
+                    ...defaults,
+                    ...opts,
+                    particleCount: Math.floor(count * particleRatio),
+                    colors: ['#003399', '#ffffff', '#ffcc00']
+                });
+            }
+
+            fire(0.25, { spread: 26, startVelocity: 55 });
+            fire(0.2, { spread: 60 });
+            fire(0.35, { spread: 100, decay: 0.91, scalar: 0.8 });
+            fire(0.1, { spread: 120, startVelocity: 25, decay: 0.92, scalar: 1.2 });
+            fire(0.1, { spread: 120, startVelocity: 45 });
+        }
+
+        function iniciarExperiencia(comMusica) {
+            if (comMusica) { hino.play().catch(e => console.log("Som ativado")); }
+
+            document.getElementById('screen-1').classList.add('hidden');
+            document.getElementById('screen-2').classList.remove('hidden');
+            document.getElementById('btn-pular').classList.remove('hidden');
+
+            timers.push(setTimeout(() => { document.getElementById('envelope').classList.add('open'); }, 500));
+
+            timers.push(setTimeout(() => {
+                document.getElementById('screen-2').classList.add('hidden');
+                document.getElementById('screen-3').classList.remove('hidden');
+            }, 2500));
+
+            timers.push(setTimeout(() => {
+                document.getElementById('screen-3').classList.add('hidden');
+                document.getElementById('screen-4').classList.remove('hidden');
+            }, 5500));
+
+            timers.push(setTimeout(() => {
+                mostrarFinal();
+            }, 8500));
+        }
+
+        function mostrarFinal() {
+            timers.forEach(t => clearTimeout(t));
+            document.getElementById('screen-1').classList.add('hidden');
+            document.getElementById('screen-2').classList.add('hidden');
+            document.getElementById('screen-3').classList.add('hidden');
+            document.getElementById('screen-4').classList.add('hidden');
+            document.getElementById('btn-pular').classList.add('hidden');
+            document.getElementById('screen-5').classList.remove('hidden');
+            lancarConfetes();
+        }
+
+        function pularTudo() {
+            mostrarFinal();
+        }
+    </script>
+</body>
+</html>
